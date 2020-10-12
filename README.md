@@ -34,9 +34,19 @@ These all commands are for Ubuntu 18.04
     pip3 install boto3
     ```
 
+- Install djangorestframework-simplejwt - type the below command to install it into your terminal
+
+  - ```bash
+    pip3 install djangorestframework-simplejwt
+    ```
+
+    
+
 ## APIs, parameters and output format
 
 All the request and response input output will be in json format
+
+When you make requests on the hosted site on heroku, just replace "http://localhost:8000" with "https://raybittuweb.herokuapp.com"
 
 - Signup API
 
