@@ -14,7 +14,6 @@ class CreateSurvey(APIView):
     def post(self, request):
         survey_name=""
         questions_data=[]
-        print(request.data)
         try:
             survey_name = request.data['survey_name']
             questions_data = request.data['questions']
