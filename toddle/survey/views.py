@@ -76,7 +76,7 @@ class TakeSurvey(APIView):
         try:
             questions_data = request.data['questions']
             for eachQ in questions_data:
-                question = Question.objects.get(id=eachQ['question_id'])
+                question = Question.objects.get(id=eachQ['question_id'], survey=survey)
                 question_response = QuestionResponse.objects.create(respondent=user, survey_response=survey_response, question=question, ans_given=eachQ['ans_given'])
                 question_response.save()
             return Response({"msg":"You took survey successfully"})
