@@ -179,7 +179,25 @@ All the request and response input output will be in json format
 
   - ```json
     {
-        "msg": "The survey created successfully"
+        "survey_id": 10,
+        "questions": [
+            {
+                "Q_id": 24,
+                "Q_title": "are you good?"
+            },
+            {
+                "Q_id": 25,
+                "Q_title": "Do you play cricket?"
+            },
+            {
+                "Q_id": 26,
+                "Q_title": "are you good at math?"
+            },
+            {
+                "Q_id": 27,
+                "Q_title": "Do you play cricket?"
+            }
+        ]
     }
     ```
 

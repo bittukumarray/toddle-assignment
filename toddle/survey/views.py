@@ -20,14 +20,19 @@ class CreateSurvey(APIView):
             questions_data = request.data['questions']
         except:
             return Response({"msg":"data format was not correct"}, status=status.HTTP_400_BAD_REQUEST)
+        final_out={}
         survey = Survey.objects.create(created_by=request.user, name=survey_name)
         survey.save()
-
+        final_out["survey_id"]=survey.id
+        questions=[]
         try:
             for eachQ in questions_data:
                 obj = Question.objects.create(title=eachQ['title'], survey=survey)
                 obj.save()
-            return Response({"msg":"The survey created successfully"}, status=status.HTTP_201_CREATED)
+                Q_dict={"Q_id":obj.id, "Q_title":obj.title}
+                questions.append(Q_dict)
+            final_out["questions"]=questions
+            return Response(final_out, status=status.HTTP_201_CREATED)
         except:
             return Response({"msg":"Some questions data format were not correcr"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -81,6 +86,6 @@ class TakeSurvey(APIView):
                 question_response.save()
             return Response({"msg":"You took survey successfully"})
         except KeyError:
-            return Response({"msg":"data format was not correct"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"msg":"data format were not correct"}, status=status.HTTP_400_BAD_REQUEST)
         except:
             return Response({"msg":"Some question Id were wrong"}, status=status.HTTP_400_BAD_REQUEST)
